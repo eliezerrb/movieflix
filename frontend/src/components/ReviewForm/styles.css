@@ -1,0 +1,35 @@
+.review-form-card {
+  padding: 20px 10px;
+  margin-bottom: 54px;
+}
+
+.review-form-card button h6 {
+  font-size: 16px;
+}
+
+.aval-imput {
+    background-color: #fff;
+    border: 1px solid #e1e1e1;
+    border-radius: 4px;
+    font-size: 16px;
+    padding: 8px 17px;
+    width: 100%;
+    color: #bfbfbf;
+    outline-color: #b0b0b0;
+    margin-bottom: 17px;
+  }
+  
+  .aval-input::placeholder {
+    color: #9e9e9e;
+  }
+
+@media (min-width: 1200px) {
+  .review-form-container-button {
+    display: flex;
+    justify-content: center;
+  }
+
+  .review-form-card button {
+    width: 334px;
+  }
+}

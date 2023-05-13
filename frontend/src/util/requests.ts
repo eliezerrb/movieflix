@@ -1,8 +1,20 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import qs from 'qs';
+import history from './history';
+
+type LoginResponse = {
+  access_token: string;
+  token_type: string;
+  expires_in: number;
+  scope: string;
+  userFirstName: string;
+  userId: number;
+}
 
 export const BASE_URL =
   process.env.REACT_APP_BACKEND_URL ?? 'http://localhost:8080';
+
+const tokenKey = 'authData';
 
 // usado no login
 const CLIENT_ID = process.env.REACT_APP_CLIENT_ID ?? 'myclientid';
@@ -38,3 +50,62 @@ export const requestBackendLogin = (loginData: LoginData) => {
     headers,
   });
 };
+
+
+// Função para alvar o LoginResponse
+export const saveAuthData = (obj : LoginResponse) => {
+  localStorage.setItem(tokenKey, JSON.stringify(obj));
+}
+
+export const getAuthData = () => {
+  // ?? "{} - se for null vai ter um obj vazio (string) no str
+  const str = localStorage.getItem(tokenKey) ?? "{}";
+  // converter de string para obj e garantindo que vai ser do tipo loginResponse (fazendo um casting com o as)
+  return JSON.parse(str) as LoginResponse;
+}
+
+
+export const requestBackend = (config: AxiosRequestConfig) => {
+
+  const headers = config.withCredentials
+    ? {
+        // pega o que já tinha e acrescenta o Authorization
+        ...config.headers,
+        Authorization: 'Bearer ' + getAuthData().access_token,
+      }
+    : config.headers;
+
+  return axios({...config, baseURL: BASE_URL, headers });
+}
+
+
+// Add a request interceptor
+axios.interceptors.request.use(
+  function (config) {
+    // Do something before request is sent
+    console.log('INTERCEPTOR ANTES DA REQUISIÇÃO');
+    return config;
+  },
+  function (error) {
+    // Do something with request error
+    console.log('ERRO NA REQUISIÇÃO');
+    return Promise.reject(error);
+  }
+);
+
+// Add a response interceptor
+axios.interceptors.response.use(
+  function (response) {
+    // Any status code that lie within the range of 2xx cause this function to trigger
+    // Do something with response data
+    return response;
+  },
+  function (error) {
+    // Any status codes that falls outside the range of 2xx cause this function to trigger
+    // Do something with response error
+    if (error.response.status === 401 || error.response.status === 403) {
+      history.push('/');
+    }
+    return Promise.reject(error);
+  }
+);
