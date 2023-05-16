@@ -35,8 +35,8 @@ const MovieDetails = () => {
       <div className="moviedetails-content-container">
         <h1>Tela detalhes do filme id: {movieId}</h1>
       </div>
-      {hasAnyRoles(['ROLE_MEMBER']) && <ReviewForm />}
-
+      {hasAnyRoles(['ROLE_MEMBER']) && <ReviewForm movieId={movieId} />}
+      
       <ReviewList reviews={reviews} />
     </div>
   );

@@ -2,7 +2,7 @@ import './styles.css';
 import Button from 'components/Button';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { getAuthData, requestBackendLogin, saveAuthData } from 'util/requests';
 
 type FormData = {
@@ -10,7 +10,18 @@ type FormData = {
   password: string;
 };
 
+type LocationState = {
+  from: string;
+};
+
 const Login = () => {
+
+  const location = useLocation<LocationState>();
+
+  
+  const { from } = location.state || { from: { pathname: '/movies' } };
+  
+
   const [hasError, setHasError] = useState(false);
 
   const {
@@ -29,7 +40,7 @@ const Login = () => {
         console.log('TOKEN GERADO: ' + token);
         setHasError(false);
         console.log('SUCESSO', response);
-        history.push('/movies');
+        history.replace(from);
       })
       .catch((error) => {
         setHasError(true);

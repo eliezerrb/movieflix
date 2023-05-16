@@ -9,7 +9,7 @@ const Button = ({ text }: Props) => {
     <>
       {/* btn - efeito de opacidade ao passar o mouse(bootstrap) */}
       <div className="btn-container">
-        <button className="btn btn-primary btn-lg">
+        <button type="submit" className="btn btn-primary btn-lg">
           <h6>{text}</h6>
         </button>
       </div>
