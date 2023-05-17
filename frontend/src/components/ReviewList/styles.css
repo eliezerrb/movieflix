@@ -4,6 +4,8 @@
 
 .reviewList-content-container {
   font-size: 16px;
+  /*Inserir quebra de linha para o texto de dentro da div de acordo com o seu tamanho se o texto não tiver espaço*/
+  word-wrap: break-word;
 }
 
 .reviewList-nome {

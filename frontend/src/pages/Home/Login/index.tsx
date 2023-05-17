@@ -1,9 +1,11 @@
+import { AuthContext } from 'AuthContext';
 import './styles.css';
 import Button from 'components/Button';
-import { useState } from 'react';
+import { useState , useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useHistory, useLocation } from 'react-router-dom';
-import { getAuthData, requestBackendLogin, saveAuthData } from 'util/requests';
+import { requestBackendLogin, saveAuthData } from 'util/requests';
+import { getTokenData } from 'util/auth';
 
 type FormData = {
   username: string;
@@ -15,6 +17,9 @@ type LocationState = {
 };
 
 const Login = () => {
+
+  // Declaração referencia para o contexto global
+  const { setAuthContextData } = useContext(AuthContext);
 
   const location = useLocation<LocationState>();
 
@@ -36,10 +41,11 @@ const Login = () => {
     requestBackendLogin(formData)
       .then((response) => {
         saveAuthData(response.data);
-        const token = getAuthData().access_token;
-        console.log('TOKEN GERADO: ' + token);
         setHasError(false);
-        console.log('SUCESSO', response);
+        setAuthContextData({
+          authenticated: true,
+          tokenData: getTokenData(),
+        })
         history.replace(from);
       })
       .catch((error) => {

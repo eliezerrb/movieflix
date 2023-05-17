@@ -64,6 +64,11 @@ export const getAuthData = () => {
   return JSON.parse(str) as LoginResponse;
 }
 
+// Função para remover
+export const removeAuthData = () => {
+  localStorage.removeItem(tokenKey);
+}
+
 
 export const requestBackend = (config: AxiosRequestConfig) => {
 
