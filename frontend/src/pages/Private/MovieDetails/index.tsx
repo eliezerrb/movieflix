@@ -30,12 +30,20 @@ const MovieDetails = () => {
     });
   }, [movieId]);
 
+
+  // Para funcionar quando salva uma nova avaliação renderiza o componente novamente
+  const handleInsertReview = (review: Review) => {
+    const clone = [...reviews];
+    clone.push(review);
+    setReviews(clone);
+  }
+
   return (
     <div className="moviedetails-container">
       <div className="moviedetails-content-container">
         <h1>Tela detalhes do filme id: {movieId}</h1>
       </div>
-      {hasAnyRoles(['ROLE_MEMBER']) && <ReviewForm movieId={movieId} />}
+      {hasAnyRoles(['ROLE_MEMBER']) && <ReviewForm movieId={movieId} onInsertReview={handleInsertReview} />}
       
       <ReviewList reviews={reviews} />
     </div>
