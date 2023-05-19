@@ -11,8 +11,8 @@ const ReviewList = ({ reviews }: Props) => {
     <>
       {reviews.map((review) => {
         return (
-          <div className="base-card reviewList-container">
-            <div className=" reviewList-content-container" key={review.id}>
+          <div className="base-card reviewList-container"  key={review.id}>
+            <div className=" reviewList-content-container">
               <h3 className="reviewList-nome">
                 {' '}
                 <StarIcon />

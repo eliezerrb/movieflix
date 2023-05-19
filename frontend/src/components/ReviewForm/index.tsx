@@ -58,7 +58,7 @@ const ReviewForm = ({ movieId, onInsertReview }: Props) => {
             placeholder="Deixe sua avaliação aqui"
             className="aval-imput"
           />
-          <div>{errors.text?.message}</div>
+          <div className="invalid-feedback d-block required-field">{errors.text?.message}</div>
           <div className=" review-form-container-button">
             <Button text="SALVAR AVALIAÇÃO" />
           </div>

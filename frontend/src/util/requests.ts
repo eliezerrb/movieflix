@@ -88,7 +88,6 @@ export const requestBackend = (config: AxiosRequestConfig) => {
 axios.interceptors.request.use(
   function (config) {
     // Do something before request is sent
-    console.log('INTERCEPTOR ANTES DA REQUISIÇÃO');
     return config;
   },
   function (error) {
