@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
-import { Review } from 'pages/types/reviews';
+import { Review } from 'types/reviews';
 import ReviewForm from 'components/ReviewForm';
 import { hasAnyRoles } from 'util/auth';
 import ReviewList from 'components/ReviewList';

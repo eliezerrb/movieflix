@@ -17,6 +17,14 @@ p {
   margin-bottom: 0;
 }
 
+ul {
+  /* Remover formatação das bolinhas da lista e etc... */
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+
 a,
 a:hover {
   text-decoration: none;

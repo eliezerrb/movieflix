@@ -1,4 +1,4 @@
-import { Review } from 'pages/types/reviews';
+import { Review } from 'types/reviews';
 import { ReactComponent as StarIcon } from 'assets/images/star.svg';
 import './styles.css';
 

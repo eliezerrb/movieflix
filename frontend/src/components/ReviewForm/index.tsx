@@ -3,7 +3,7 @@ import './styles.css';
 import { useForm } from 'react-hook-form';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
-import { Review } from 'pages/types/reviews';
+import { Review } from 'types/reviews';
 
 type Props = {
   movieId: string;
