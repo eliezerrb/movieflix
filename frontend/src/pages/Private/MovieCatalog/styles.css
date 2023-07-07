@@ -9,9 +9,20 @@
   margin-bottom: 10px;
 }
 
-@media (min-width: 1200px) {
+@media (min-width: 768px) {
   .moviecatalog-container {
     padding: 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .moviecatalog-container {
     font-size: 40px;
+  }
+}
+
+@media (min-width: 1400px) {
+  .moviecatalog-container {
+    padding: 40px 140px;
   }
 }

@@ -3,7 +3,7 @@
     margin-bottom: 20px;
   }
   
-  .genre-filter-category-container {
+  .movie-filter-genre-container {
     flex: 1;
     margin-right: 10px;
   }
@@ -31,4 +31,12 @@
   
   .genre-filter-select__indicator-separator {
     display: none;
+  }
+
+
+  @media (min-width: 576px) {
+    .movie-filter-genre-container {
+      width: 260px;
+      margin-right: 10px;
+    }
   }
