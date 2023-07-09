@@ -26,3 +26,9 @@
   letter-spacing: -0.015em;
   padding: 10px;
 }
+
+@media (min-width: 768px) {
+  .reviewList-container {
+    padding: 20px 40px;  
+  }
+}
