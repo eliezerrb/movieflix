@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import { AxiosRequestConfig } from 'axios';
 import { requestBackend } from 'util/requests';
 import { Review } from 'types/reviews';
+import { toast} from 'react-toastify';
 
 type Props = {
   movieId: string;
@@ -40,9 +41,11 @@ const ReviewForm = ({ movieId, onInsertReview }: Props) => {
       .then((response) => {
         setValue('text', '');
         onInsertReview(response.data);
+        toast.info('Avaliação cadastrada com sucesso');
         console.log('SUCESSO AO SALVAR', response);
       })
       .catch((error) => {
+        toast.error('Erro ao cadastrar avaliação');
         console.log('ERRO AO SALVAR', error);
       });
   };
